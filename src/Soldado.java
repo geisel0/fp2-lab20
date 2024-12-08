@@ -1,59 +1,50 @@
-public class Soldado {
-    private String nombre;
-    private int nivelVida;
-    private int nivelAtaque;
-    private int nivelDefensa;
-    private char simbolo;
-    private static int contador=0;
+import java.util.Random;
 
-    public Soldado() {
+public abstract class Soldado implements Comparable<Soldado> {
+    protected String nombre;
+    protected int nivelVida;
+    protected int nivelAtaque;
+    protected int nivelDefensa;
+    protected int fila;
+    protected int columna;
+    protected static int contador = 0;
+
+    public Soldado(int vidaMin, int vidaMax) {
+        Random random = new Random();
+        this.nivelVida = random.nextInt(vidaMax - vidaMin + 1) + vidaMin;
+        this.fila = random.nextInt(10);
+        this.columna = random.nextInt(10);
         contador++;
     }
 
-    public void setSimbolo(char simbolo) {
-        this.simbolo = simbolo;
-    }
-
-    public char getSimbolo() {
-        return simbolo;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    public abstract void accionEspecial();
 
     public String getNombre() {
         return nombre;
-    }
-
-    public void setNivelVida(int nivelVida) {
-        this.nivelVida = nivelVida;
     }
 
     public int getNivelVida() {
         return nivelVida;
     }
 
-    public void setNivelAtaque(int nivelAtaque) {
-        this.nivelAtaque = nivelAtaque;
-    }
-
     public int getNivelAtaque() {
         return nivelAtaque;
-    }
-
-    public void setNivelDefensa(int nivelDefensa) {
-        this.nivelDefensa = nivelDefensa;
     }
 
     public int getNivelDefensa() {
         return nivelDefensa;
     }
 
-    public void atacar(Soldado otroSoldado) {
-        int daño = nivelAtaque - otroSoldado.getNivelDefensa();
-        if (daño > 0) {
-            otroSoldado.setNivelVida(otroSoldado.getNivelVida() - daño);
-        }
+    public int getFila() {
+        return fila;
+    }
+
+    public int getColumna() {
+        return columna;
+    }
+
+    @Override
+    public int compareTo(Soldado o) {
+        return o.nivelVida - this.nivelVida;
     }
 }
