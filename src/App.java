@@ -60,6 +60,7 @@ public class App {
             tablero.colocarSoldado(soldado, fila, columna);
         }
     }
+    
 
     public static void turnoJugador(Tablero tablero, Scanner scanner, Ejercito ejercito) {
         System.out.println("Ingrese fila y columna del soldado a mover:");
