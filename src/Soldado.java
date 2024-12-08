@@ -47,4 +47,5 @@ public abstract class Soldado implements Comparable<Soldado> {
     public int compareTo(Soldado o) {
         return o.nivelVida - this.nivelVida;
     }
+    
 }
